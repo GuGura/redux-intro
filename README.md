@@ -19,3 +19,15 @@ middleware를 사용할 수 있게 해주는 툴
 ```
 npm i redux-thunk
 ```
+
+### Redux-devtools-extension
+Chrome 스토어에서 redux-devtools 설치
+middleware에 감싸서 사용해라
+```
+ npm i redux-devtools-extension
+```
+
+```js
+import {composeWithDevTools} from "redux-devtools-extension";
+const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
+```
