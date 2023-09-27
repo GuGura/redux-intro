@@ -31,3 +31,43 @@ middleware에 감싸서 사용해라
 import {composeWithDevTools} from "redux-devtools-extension";
 const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
 ```
+
+### Redux/toolkit
+최신버전 redux
+위에 있는 모든걸 합쳐놨다.
+```
+npm install @reduxjs/toolkit
+```
+이전 버전
+```js
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from "redux-thunk";
+import {composeWithDevTools} from "redux-devtools-extension";
+import accountReducer from "./features/account/accountSlice";
+import customerReducer from "./features/customer/customerSlice";
+
+const rootReducer = combineReducers({
+    account: accountReducer,
+    customer: customerReducer
+})
+
+
+const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
+
+export default store;
+```
+뉴버전 
+```js
+import {configureStore} from "@reduxjs/toolkit";
+import accountReducer from "./features/account/accountSlice";
+import customerReducer from "./features/customer/customerSlice";
+
+const store = configureStore({
+    reducer:{
+        account:accountReducer,
+        customer:customerReducer
+    }
+})
+
+export default store;
+```
